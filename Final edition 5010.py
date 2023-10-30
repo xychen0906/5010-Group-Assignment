@@ -15,7 +15,9 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 
 
 # In[106]:
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
+server = app.server
 
 df = pd.read_csv('purine data new.csv')
 df
@@ -27,33 +29,11 @@ df
 user = pd.read_excel('gout_patient_data.xlsx')
 user
 
-
-# In[108]:
-
-
 user['Date'] = pd.to_datetime(user['Date'])
-user.info()
-
-
-# In[109]:
-
 
 user['Month'] = pd.to_datetime(user['Date']).dt.month
 
-
-# In[110]:
-
-
 new_user = pd.melt(user, id_vars=['Date','Month','User'], var_name='Categories', value_name='Value')
-new_user.head()
-
-
-# In[181]:
-
-
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-
-server = app.server
 
 food_quantities = {food: 0 for food in df['Foods']}
 
