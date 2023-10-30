@@ -53,6 +53,8 @@ new_user.head()
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
+server = app.server
+
 food_quantities = {food: 0 for food in df['Foods']}
 
 food_intake = []
